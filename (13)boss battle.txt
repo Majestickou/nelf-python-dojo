@@ -1,0 +1,118 @@
+play = True
+from random import randint
+from time import sleep
+
+bhp = 100
+batk = 3
+hp = 25
+atk = 10
+cd2 = 0
+cd3 = 0
+
+cheat = input('woud you like to turn on custom mode? (y/n)')
+if cheat == 'y':
+    bhp = int(input('boss hp:'))
+    batk = int(input('boss atk:'))
+    hp = int(input('your hp:'))
+    atk = int(input('your atk:'))
+
+print('A wild ?? has been encountered!')
+while play == True:
+    cd2 -= 1
+    cd3 -= 1
+    atk = 10
+    batk = 3
+    battack = randint(1, 4)
+    if battack == 1 or battack == 2:
+        atkname = 'SLASH OF DOOM AND DESPAIR UPON THE HEAVENS GATE'
+        extra = 0
+    elif battack == 3:
+        atkname = 'kick'
+        extra = 10
+    elif battack == 4:
+        atkname = 'PROSPERITY SHALL FALL AS DESTRUCTION IS BESTOWED UPON YOU'
+        extra = 2
+    if cd2 < 0:
+        cd2 += 1
+    if cd3 < 0:
+        cd3 += 1
+
+    if bhp <= 0:
+        print('boss has been defeated!')
+        break
+    if hp <= 0:
+        print('You lost')
+    print("Boss: void")
+    sleep(.25)
+    batk = 3
+    print("void hp:", bhp)
+    sleep(.25)
+    print('your hp:', hp, 'atk', atk)
+    sleep(.25)
+    print("Choose an attack!")
+    print('1. strike:', atk, 'dmg')
+    print('2. DESTROYER OF ALL MULTIVERSES PUNCH:', atk + 5, 'dmg')
+    print('3. kick:', atk + 3, 'dmg')
+    sleep(.25)
+    attack = input('attack:(1, 2, or 3)')
+    sleep(.25)
+    if attack == '1':
+        print('You used strike! Dealt %d damage to void' % atk)
+        bhp -= atk
+        sleep(.5)
+        
+        print('Boss used', atkname, 'on you!')
+        sleep(.5)
+        print('Boss dealt', batk + extra, 'dmg to you!')
+        sleep(.5)
+        hp -= batk + extra
+    elif attack == '2' and cd3 == 0:
+        cd2 += 3
+        print('You used DESTROYER OF ALL MULTIVERSES PUNCH! Dealt %d damage to void' % atk)
+        bhp -= (atk + 5)
+        sleep(.5)
+        
+        print('Boss used', atkname, 'on you!')
+        sleep(.5)
+        print('Boss dealt', batk + extra, 'dmg to you!')
+        sleep(.5)
+        hp -= batk + extra
+
+    elif attack == '2' and cd3 > 0:
+        print('attack on cd for %d turns' % cd2)
+        sleep(.5)
+
+    elif attack == '3' and cd3 == 0:
+        cd3 += 2
+        print('You used DESTROYER OF ALL MULTIVERSES PUNCH! Dealt %d damage to void' % atk)
+        sleep(.5)
+        bhp -= (atk + 3)
+        
+        print('Boss used', atkname, 'on you!')
+        sleep(.5)
+        print('Boss dealt', batk + extra, 'dmg to you!')
+        sleep(.5)
+        hp -= batk + extra
+
+    elif attack == '3' and cd3 > 0:
+        print('attack on cd for %d turns' % cd3)
+        sleep(.5)
+    else:
+        print('unknown attack')
+        sleep(.5)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
