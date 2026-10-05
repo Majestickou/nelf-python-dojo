@@ -1,0 +1,75 @@
+from time import sleep as w
+table = 15
+bag = 10
+shampoo = 3
+budget = int(input('select budget:'))
+
+menustuff = ['table', 'bag', 'shampoo']
+ON = True
+purchasing = []
+
+print('Cashier: Hello! What would you like to purchase?')
+print('menu: table(15 usd), bag(10 usd), shampoo(3 usd)')
+while True:
+    print('Input "done" if done choosing')
+    purchase = input()
+    if purchase == 'table':
+        print('table purchased')
+        purchasing.append('table')
+    elif purchase == 'shampoo':
+        print('shampoo purchased')
+        purchasing.append('shampoo')
+    elif purchase == 'bag':
+        print('bag purchased')
+        purchasing.append('bag')
+    elif purchase == 'done':
+        break
+    else:
+        print("Cashier: Sorry, we don't have that")
+    print('Cashier: Anything else?')
+
+print('Cashier: Your total is...')
+tablecount = 0
+bagcount = 0
+shampoocount = 0
+for i in purchasing:
+    if i == 'table':
+        tablecount += 1
+    elif i == 'bag':
+        bagcount += 1
+    elif i == 'shampoo':
+        shampoocount += 1
+print('Cashier: Your receipt:')
+print('$' + str(15*tablecount), 'table', str(tablecount) + 'x')
+print('$' + str(10*bagcount), 'bag', str(bagcount) + 'x')
+print('$' + str(3*shampoocount), 'shampoo', str(shampoocount) + 'x')
+total = 15*tablecount+10*bagcount+3*shampoocount
+print('Total:', '$' + str(15*tablecount+10*bagcount+3*shampoocount))
+print('budget:', budget)
+pay = input('pay? (y/n):')
+if pay == 'y':
+    if budget >= total:
+        print('Cashier: You have', str(budget - total) + '$', 'budget left')
+        print('Cashier: Thank you for your patronage!')
+    else:
+        print('Cashier: You do not have enough money. Get out of my store you homeless time waster!')
+else:
+    print('Cashier: HOW DARE YOU WASTE MY TIME')
+    print("Cashier: I'LL SHOOT A BAZOOKA AT YOU IN 3 SECONDS!!!!")
+    w(1)
+    print('Cashier: 2')
+    w(1)
+    print('Cashier: 1')
+    w(1)
+    print('Cashier: 0...')
+    print('Cashier: KA-')
+    while True:
+        w(.1)
+        print('BOOOOMMM!!!')
+
+
+
+
+
+
+
