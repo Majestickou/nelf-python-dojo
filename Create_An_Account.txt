@@ -1,0 +1,86 @@
+while True:
+    try:
+        age = int(input('enter your age:'))
+        if age < 0:
+            print('Please enter age from 0-100')
+            continue
+    except:
+        print('Please enter age in numbers')
+    else:
+        break
+print('Thank you for confirming your age (%s)'% age)
+
+blocked_users = ['admin123', 'wowcol', 'destroyed']
+blocked_Letters = '!@$%^&*+='
+BlockedUser = False
+BlockedLetters = False
+while True:
+    user = input('Please create a username')
+    BlockedUser = False
+    for i in blocked_users:
+        if i in user:
+            print(f'Please do not use {i} while creating a username as this username is used, Please choose a different username.')
+            BlockedUser = True
+            break
+    BlockedLetters = False
+    for j in blocked_Letters:
+        if j in user:
+            print(f'Username <{user}> is used, Please use a different username.')
+            BlockedLetters = True
+            break
+    if not BlockedLetters and not BlockedUser:
+        print(f'Username {user} created!')
+        break
+print(f'Welcome {user}. Please create a password.')
+while True:
+    password = input('Password:')
+    if ' ' in password:
+        print('Please do not use spaces.')
+    else:
+        break
+
+class datatest:
+    def __init__(self, age, user, password):
+        self.age = age
+        self.user = user
+        self.password = password
+    def ShowData(self):
+        return ['age: %s'% self.age, 'Username: %s'% self.user, 'password: %s'% self.password]
+    def OtherData(self, age, user):
+        return ['age: %s'% age, 'user: %s'% user, 'password: N*****']
+data = datatest(age, user, password)
+admin123data = datatest(age, user, password)
+
+def check(action, data, datatest):
+    print('Data:')
+    if action in blocked_users:
+        if action == 'admin123':
+            for i in admin123data.OtherData('19', 'admin123'):
+                print(i)
+            act()
+    else:
+        for i in data.ShowData():
+            print(i)
+        act()
+    
+
+def check_action(action):
+    if action == '1' or action == 'admin123':
+        check(action, data, datatest)
+
+    
+
+
+def act():
+    print('Available actions:')
+    print('1.Check Data')
+    while True:
+        action = input('Choose your next action(1/2/3/):')
+        if action in ['1', '2', '3'] or action == 'admin123':
+            check_action(action)
+        else:
+            print('Action not found')
+action = act()
+
+
+    
