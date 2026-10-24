@@ -1,0 +1,69 @@
+#Functions
+guesses = 1
+from random import randint
+def game(guesses, num):
+    c = False
+    while True:
+        try:
+            guess = int(input("Guess the number!: "))
+        except:
+            print("That's not a number!")
+        else:
+            break
+    if guess != num:
+        guesses += 1
+        if guess < num:
+            print("Higher!")
+            return guesses, False
+        else:
+            print("Lower!")
+            return guesses, False
+    else:
+        print("Correct number!")
+        print("Amount of guesses:", guesses)
+        c = True
+        return guesses, True
+
+def check(guesses):
+  print(guesses)
+  if guesses <= 3:
+    print("Lower than 3 guesses? Extradionary!")
+  elif guesses < 10:
+    print("Lower than 10 guesses but higher than 3? Average!")
+  else:
+    print("Over 10 guesses? Better luck next time!")
+  
+
+#main code
+print("Welcome to the number guessing game!")
+def gamet(guesses):
+  gamemode = input("Choose a difficulty:(easy/medium/hard) ").lower()
+  if "easy" in gamemode:
+    num = randint(0, 50)
+    print("Easy difficulty chosen!")
+    print("Hint: Number is between 0-50")
+    for i in range(100):
+      guesses, c = game(guesses, num)
+      if c == True:
+        return guesses
+      
+  elif "medium" in gamemode:
+    num = randint(0, 150)
+    print("Medium difficulty chosen!")
+    print("Hint: Number is between 0-150")
+    for i in range(100):
+      guesses, c = game(guesses, num)
+      if c == True:
+        return guesses
+  elif "hard" in gamemode:
+    num = randint(0, 500)
+    print("Hard difficulty chosen! Goodluck")
+    print("Hint: Number is between 0-500")
+    for i in range(100):
+      guesses, c = game(guesses, num)
+      if c == True:
+        return guesses
+
+
+guesses = gamet(guesses)
+check(guesses)
