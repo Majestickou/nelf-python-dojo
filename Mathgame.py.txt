@@ -1,0 +1,311 @@
+from math import *
+print('NOTE: Power and root are in WIP')
+from time import sleep, time
+from random import randint
+score = 0
+class mathgametime: #WIP
+  def __init__(self, chosengame, chosen_difficulty):
+    self.chosengame = chosengame
+    self.chosen_difficulty = chosen_difficulty
+  def addition(self):
+    
+    if "easy" in self.chosen_difficulty:
+      num1 = randint(1, 50)
+      num2 = randint(1, 50)
+      num3 = 0
+    elif "medium" in self.chosen_difficulty:
+      num1 = randint(50, 500)
+      num2 = randint(50, 500)
+      num3 = 0
+    elif "hard" in self.chosen_difficulty:
+      num1 = randint(500, 1000)
+      num2 = randint(500, 1000)
+      num3 = randint(100, 200)
+    #counting
+    solution = num1 + num2 + num3
+    if "easy" in self.chosen_difficulty or "medium" in self.chosen_difficulty:
+      question = f"What is the answer to {num1} + {num2}"
+    else:
+      question = f"What is the answer to {num1} + {num2} + {num3}"
+    return num1, num2, num3, solution, question
+
+
+  def subtraction(self):
+    if "easy" in self.chosen_difficulty:
+      num1 = randint(25, 50)
+      num2 = randint(1, 25)
+      num3 = 0
+    elif "medium" in self.chosen_difficulty:
+      num1 = randint(50, 500)
+      num2 = randint(50, 500)
+      num3 = 0
+    elif "hard" in self.chosen_difficulty:
+      num1 = randint(500, 1000)
+      num2 = randint(500, 1000)
+      num3 = randint(100, 500)
+    #counting
+    solution = (num1 - num2) - num3
+    if "easy" in self.chosen_difficulty or "medium" in self.chosen_difficulty:
+      question = f"What is the answer to {num1} - {num2}"
+    elif "hard" in self.chosen_difficulty:
+      question = f"What is the answer to ({num1} - {num2}) - {num3}"
+    return num1, num2, num3, solution, question
+
+    
+  def multiplication(self):
+    if "easy" in self.chosen_difficulty:
+      num1 = randint(2, 20)
+      num2 = randint(2, 20)
+      num3 = 0
+    elif "medium" in self.chosen_difficulty:
+      num1 = randint(20, 50)
+      num2 = randint(20, 50)
+      num3 = 0
+    elif "hard" in self.chosen_difficulty:
+      num1 = randint(50, 200)
+      num2 = randint(50, 200)
+      num3 = 0
+    #counting
+    solution = num1 * num2
+    question = f"What is the answer to {num1} * {num2}"
+    return num1, num2, num3, solution, question
+
+    
+  def division(self):
+    if "easy" in self.chosen_difficulty:
+      ans = randint(2, 20)
+      num2 = randint(2, 20)
+      num3 = 0
+    elif "medium" in self.chosen_difficulty:
+      ans = randint(2, 40)
+      num2 = randint(2, 40)
+      num3 = 0
+    elif "hard" in self.chosen_difficulty:
+      ans = randint(2, 100)
+      num2 = randint(2, 100)
+      num3 = 0
+    #counting
+    num1 = ans * num2
+    solution = ans
+    question = f"What is the answer to {num1} / {num2}"
+    return num1, num2, num3, solution, question
+
+    
+    
+
+def greet():
+  print("Hello player! what math quiz would you like to play today?")
+  sleep(.5)
+  print("Options: addition, subtraction,multiplication, division, power(WIP), and root(WIP).")
+  sleep(.5)
+
+def options():
+  chosengame = input("Choose a math quiz(quit to end): ")
+  return chosengame
+  
+#^ functions and classes
+
+#\|/ commands
+greet()
+
+
+def again():
+  while True:
+    chosengame = options()
+    chosengame = chosengame.lower()
+    if chosengame == "quit": #WIP
+      print("Thank you for playing!")
+      sleep(1)
+      exit()
+    elif "addition" in chosengame or chosengame == "+":
+      print("Addition chosen!")
+      return chosengame
+    elif "subtraction" in chosengame or chosengame == "-":
+      print("Subtraction chosen!")
+      return chosengame
+    elif "multiplication" in chosengame or chosengame == "*":
+      print("multiplication chosen!")
+      return chosengame
+    elif "division" in chosengame or chosengame == "/":
+      print("division chosen!")
+      return chosengame
+    else:
+      print("unknown mode")
+      
+def difficulty():
+  while True:
+    chosen_difficulty = input("Choose a difficulty(easy, medium, hard): ")
+  
+    if "easy" in chosen_difficulty:
+      print("easy chosen!")
+      return chosen_difficulty
+    elif "medium" in chosen_difficulty:
+      print("Medium chosen!")
+      return chosen_difficulty
+    elif "hard" in chosen_difficulty:
+      print("Hard chosen!")
+      return chosen_difficulty
+    elif "quit" in chosen_difficulty:
+      print("quitting now? bro-")
+      sleep(.25)
+      exit()
+    else:
+      print("Unknown difficulty")
+      continue
+
+#--
+chosengame = again()
+chosen_difficulty = difficulty()
+mathis = mathgametime(chosengame, chosen_difficulty)
+#Variables: chosen_difficulty, chosengame, mathis
+def gametime(chosengame, chosen_difficulty, mathis):
+  global score
+  if "addition" in chosengame or chosengame == "+":
+    num1, num2, num3, solution, question = mathis.addition()
+    print(question)
+    start = time()
+    ans = input("(quit to exit/change to changemode)Your answer: ")
+    end = time()
+    print("")
+#TIME IS CLOCK
+    if ans == str(solution):
+      if round(end - start) <= 5:
+        amount = 10
+        score += 10
+      elif round(end - start) >= 6 and round(end - start) <= 15:
+        score += 7
+        amount = 7
+      else:
+        score += 4
+        amount = 4
+      print("Correct answer!")
+      print(f"You gained {amount} score!")
+      print(f"Your score: {score}")
+      print(f"Time: {round(end - start, 2)}")
+      return None
+    elif "exit" in ans:
+      print("noob")
+      exit()
+    elif "change" in ans:
+      return "change"
+    else:
+      print("Uncorrect answer. Answer was %s."% solution)
+      print("You lost 4 score!")
+      score -= 4
+      print("Your score:", score)
+      print(f"Time: {round(end - start, 2)}")
+      return None
+      
+  elif "subtraction" in chosengame or  chosengame == "-":
+    num1, num2, num3, solution, question = mathis.subtraction()
+    print(question)
+    start = time()
+    ans = input("(quit to exit/change to changemode)Your answer: ")
+    end = time()
+    print("")
+#TIME IS CLOCK
+    if ans == str(solution):
+      if round(end - start) <= 5:
+        amount = 10
+        score += 10
+      elif round(end - start) >= 6 and round(end - start) <= 15:
+        score += 7
+        amount = 7
+      else:
+        score += 4
+        amount = 4
+      print("Correct answer!")
+      print(f"You gained {amount} score!")
+      print(f"Your score: {score}")
+      print(f"Time: {round(end - start, 2)}")
+      return None
+    elif "exit" in ans:
+      print("noob")
+      exit()
+    elif "change" in ans:
+      return "change"
+    else:
+      print("Uncorrect answer. Answer was %s."% solution)
+      print("You lost 4 score!")
+      score -= 4
+      print("Your score:", score)
+      print(f"Time: {round(end - start, 2)}")
+      return None
+  elif "multiplication" in chosengame or chosengame == "*":
+    num1, num2, num3, solution, question = mathis.multiplication()
+    print(question)
+    start = time()
+    ans = input("(quit to exit/change to changemode)Your answer: ")
+    end = time()
+    print("")
+    if ans == str(solution):
+      if round(end - start) <= 5:
+        amount = 10
+        score += 10
+      elif round(end - start) >= 6 and round(end - start) <= 15:
+        score += 7
+        amount = 7
+      else:
+        score += 4
+        amount = 4
+      print("Correct answer!")
+      print(f"You gained {amount} score!")
+      print(f"Your score: {score}")
+      print(f"Time: {round(end - start, 2)}")
+      return None
+    elif "exit" in ans:
+      print("noob")
+      exit()
+    elif "change" in ans:
+      return "change"
+    else:
+      print("Uncorrect answer. Answer was %s."% solution)
+      print("You lost 4 score!")
+      score -= 4
+      print("Your score:", score)
+      print(f"Time: {round(end - start, 2)}")
+      return None
+  elif "division" in chosengame or chosengame == "/":
+    num1, num2, num3, solution, question = mathis.division()
+    print(question)
+    start = time()
+    ans = input("(quit to exit/change to changemode)Your answer: ")
+    end = time()
+#TIME IS CLOCK
+    if ans == str(solution):
+      if round(end - start) <= 5:
+        amount = 10
+        score += 10
+      elif round(end - start) >= 6 and round(end - start) <= 15:
+        score += 7
+        amount = 7
+      else:
+        score += 4
+        amount = 4
+      print("Correct answer!")
+      print(f"You gained {amount} score!")
+      print(f"Your score: {score}")
+      print(f"Time: {round(end - start, 2)}")
+      return None
+    elif "exit" in ans:
+      print("noob")
+      exit()
+    elif "change" in ans:
+      return "change"
+    else:
+      print("Uncorrect answer. Answer was %s."% solution)
+      print("You lost 4 score!")
+      score -= 4
+      print("Your score:", score)
+      print(f"Time: {round(end - start, 2)}")
+      return None
+
+
+for _ in range(100):
+  result = gametime(chosengame, chosen_difficulty, mathis)
+  if "change" == result:
+    chosengame = again()
+    chosen_difficulty = difficulty()
+    mathis = mathgametime(chosengame, chosen_difficulty)
+  
+
