@@ -1,0 +1,33 @@
+def REDOON():
+  def desimal(binary):
+    desimal = 0
+    BIT = len(binary)
+    BIT -= 1
+    for i in binary:
+      Calc = int(i) * (2 ** BIT)
+      BIT -= 1
+
+      desimal += Calc
+    print(desimal)
+
+#main code
+  while True:
+    try:
+      binary = input("Put the binary you want to change into desimal: ")
+      for i in binary:
+        if not i in "01":
+          raise ValueError("a")
+    except:
+      print("That's not a binary.")
+    else:
+      break
+  desimal(binary)
+again = input("Please type y to continue: ")
+while True:
+  if again == "y":
+    REDOON()
+  elif again == "n":
+    exit() 
+  else:
+    print("Invalid")
+  again = input("Again?(y/n) ")
