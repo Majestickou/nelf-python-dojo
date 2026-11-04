@@ -1,0 +1,66 @@
+price = 0
+
+class warung:
+
+    storeitems = {}
+    def __init__(self, price):
+        self.price = 0
+
+    def calc(self, cartitems):
+        for k, v in warung.storeitems.items():
+            p = int(v)
+            if k in cartitems:
+                self.price += p
+
+
+
+    def checkout(self):
+        return f'Total: {self.price}$'
+
+store = warung(price)
+
+while True:
+    choose = input('choose name for the item(ex: coffee): 0 to end')
+    if 'check' in choose:
+        print(store.storeitems)
+        continue
+    if choose == '0':
+        break
+    price = input('price:')
+    if price == '0':
+        break
+    if 'check' in choose:
+        print(store.storeitems)
+        continue
+    elif  choose in store.storeitems.keys():
+        print("Item is already in store.")
+        continue
+    try:
+        store.storeitems[choose] = int(price)
+    except:
+        print('Please add a number value')
+        continue
+    print("enter command 'check' to check items.")
+cart = False
+cartitems = []
+while cart != '0':
+    cart = input('Enter any of the items that we have(check--look at items, 0--end/checkout):').lower()
+
+    if cart == 'check':
+        print(store.storeitems)
+    elif cart == '0':
+        break
+    elif cart not in store.storeitems:
+        print('Invalid item.')
+        print('')
+        continue
+    else:
+        print('Item added. Anything else?')
+        cartitems.append(cart)
+
+des = store.calc(cartitems)
+print(store.checkout())
+
+
+
+
